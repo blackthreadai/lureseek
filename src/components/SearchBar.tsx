@@ -34,7 +34,7 @@ export default function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-        placeholder="Describe a lure... e.g. &quot;blue rapala swim bait&quot;"
+        placeholder="What are you looking for? ... e.g. &quot;white and silver swim bait&quot;"
         className={`flex-1 bg-transparent outline-none text-lure-text placeholder:text-lure-muted ${
           compact ? "px-5 text-sm" : "px-6 text-base"
         }`}
