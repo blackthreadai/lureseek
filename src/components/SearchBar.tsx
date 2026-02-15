@@ -24,7 +24,7 @@ export default function SearchBar({
 
   return (
     <div
-      className={`flex items-center w-full bg-lure-surface border border-lure-accent rounded-full overflow-hidden transition-all focus-within:border-lure-accent focus-within:ring-1 focus-within:ring-lure-accent/40 ${
+      className={`flex items-center w-full bg-lure-surface border border-lure-tan overflow-hidden transition-all focus-within:border-lure-tan focus-within:ring-1 focus-within:ring-lure-tan/40 ${
         compact ? "max-w-2xl h-11" : "max-w-2xl h-14"
       }`}
     >
@@ -42,7 +42,7 @@ export default function SearchBar({
       <button
         onClick={handleSubmit}
         aria-label="Search"
-        className={`flex items-center justify-center bg-lure-accent hover:bg-lure-accent-dim transition-colors text-white ${
+        className={`flex items-center justify-center bg-lure-tan hover:bg-lure-tan/80 transition-colors text-lure-bg ${
           compact ? "w-11 h-11" : "w-14 h-14"
         }`}
       >
