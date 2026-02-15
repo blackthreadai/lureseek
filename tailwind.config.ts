@@ -16,6 +16,7 @@ const config: Config = {
           accent: "#db2439",
           "accent-dim": "#a81c2e",
           muted: "#4a6fa5",
+          tan: "#da876f",
           text: "#e2e8f0",
         },
       },

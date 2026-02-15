@@ -24,7 +24,7 @@ export default function SearchBar({
 
   return (
     <div
-      className={`flex items-center w-full bg-lure-surface border border-lure-border rounded-full overflow-hidden transition-all focus-within:border-lure-accent/50 focus-within:ring-1 focus-within:ring-lure-accent/30 ${
+      className={`flex items-center w-full bg-lure-surface border border-lure-tan rounded-full overflow-hidden transition-all focus-within:border-lure-tan focus-within:ring-1 focus-within:ring-lure-tan/40 ${
         compact ? "max-w-2xl h-11" : "max-w-2xl h-14"
       }`}
     >
