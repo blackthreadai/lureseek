@@ -35,16 +35,11 @@ export default function ImageCard({ lure }: ImageCardProps) {
           loading="lazy"
           onLoad={() => setLoaded(true)}
           onError={() => setError(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 ${
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
             loaded ? "opacity-100" : "opacity-0"
           }`}
         />
-        {/* Subtle hover overlay with name */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-          <span className="text-white text-xs font-medium drop-shadow-lg">
-            {lure.name}
-          </span>
-        </div>
+        {/* No hover overlay — clean click-through */}
       </div>
     </a>
   );
