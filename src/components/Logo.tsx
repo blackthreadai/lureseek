@@ -8,18 +8,13 @@ export default function Logo({ size = "lg" }: LogoProps) {
   const isLarge = size === "lg";
 
   return (
-    <div className={`flex flex-col items-center ${isLarge ? "gap-2" : "gap-0"}`}>
-      <div className="flex items-center">
-        <h1
-          className={`font-bold tracking-tight ${
-            isLarge ? "text-4xl sm:text-5xl" : "text-xl"
-          }`}
-        >
-          <span className="text-lure-text">Lure</span>
-          <span className="text-lure-accent">Seek</span>
-        </h1>
-      </div>
-      {/* tagline removed */}
+    <div className="flex items-center justify-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo.png"
+        alt="LureSeek"
+        className={isLarge ? "h-24 sm:h-32" : "h-8"}
+      />
     </div>
   );
 }
