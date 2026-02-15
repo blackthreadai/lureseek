@@ -9,6 +9,9 @@ interface ImageCardProps {
 
 export default function ImageCard({ lure }: ImageCardProps) {
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  if (error) return null;
 
   return (
     <a
@@ -31,6 +34,7 @@ export default function ImageCard({ lure }: ImageCardProps) {
           alt={lure.name}
           loading="lazy"
           onLoad={() => setLoaded(true)}
+          onError={() => setError(true)}
           className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 ${
             loaded ? "opacity-100" : "opacity-0"
           }`}
