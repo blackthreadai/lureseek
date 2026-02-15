@@ -42,7 +42,7 @@ export default function SearchBar({
       <button
         onClick={handleSubmit}
         aria-label="Search"
-        className={`flex items-center justify-center bg-lure-tan hover:bg-lure-tan/80 transition-colors text-lure-bg ${
+        className={`flex items-center justify-center bg-lure-accent hover:bg-lure-accent-dim transition-colors text-white ${
           compact ? "w-11 h-11" : "w-14 h-14"
         }`}
       >
