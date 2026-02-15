@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       {/* Top bar */}
-      <header className="sticky top-0 z-10 bg-lure-bg/80 backdrop-blur-md border-b border-lure-border">
+      <header className="sticky top-0 z-10 bg-lure-bg border-b border-lure-border">
         <div className="max-w-7xl mx-auto flex items-center gap-4 px-4 py-3">
           <button onClick={() => { setSearched(false); setResults(null); setQuery(""); }}>
             <Logo size="sm" />
