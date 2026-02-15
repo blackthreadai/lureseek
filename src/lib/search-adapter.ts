@@ -1,12 +1,10 @@
 import { SearchProvider } from "./types";
 import { BraveSearchProvider } from "./brave-search";
 import { GoogleSearchProvider } from "./google-search";
+import { DuckDuckGoSearchProvider } from "./serper-search";
 import { MOCK_LURES } from "./mock-data";
 import { LureResult } from "./types";
 
-/**
- * Mock search provider — fallback when no API keys are configured.
- */
 class MockSearchProvider implements SearchProvider {
   async search(query: string): Promise<LureResult[]> {
     await new Promise((r) => setTimeout(r, 400 + Math.random() * 400));
@@ -19,20 +17,18 @@ class MockSearchProvider implements SearchProvider {
   }
 }
 
-/** Pick the best available provider */
-function pickProvider(): SearchProvider {
+/** Pick the best available provider — DDG as default (no keys needed) */
+function pickProvider(): [SearchProvider, string] {
   if (process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX) {
-    return new GoogleSearchProvider();
+    return [new GoogleSearchProvider(), "google"];
   }
   if (process.env.BRAVE_API_KEY) {
-    return new BraveSearchProvider();
+    return [new BraveSearchProvider(), "brave"];
   }
-  return new MockSearchProvider();
+  // DuckDuckGo — no API key needed
+  return [new DuckDuckGoSearchProvider(), "duckduckgo"];
 }
 
-export const searchProvider: SearchProvider = pickProvider();
-export const providerName: string = process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX
-  ? "google"
-  : process.env.BRAVE_API_KEY
-    ? "brave"
-    : "mock";
+const [provider, name] = pickProvider();
+export const searchProvider: SearchProvider = provider;
+export const providerName: string = name;
