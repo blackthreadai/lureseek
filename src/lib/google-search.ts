@@ -39,15 +39,24 @@ export class GoogleSearchProvider implements SearchProvider {
     const url2 = new URL(url.toString());
     url2.searchParams.set("start", "11");
 
-    const [res1, res2] = await Promise.all([
-      fetch(url.toString()),
-      fetch(url2.toString()),
-    ]);
+    // Start with just one request to debug
+    const res1 = await fetch(url.toString());
 
-    const [data1, data2]: [GoogleResponse, GoogleResponse] = await Promise.all([
-      res1.json(),
-      res2.json(),
-    ]);
+    if (!res1.ok) {
+      const errText = await res1.text();
+      throw new Error(`Google API ${res1.status}: ${errText}`);
+    }
+
+    const data1: GoogleResponse = await res1.json();
+
+    // Second page
+    let data2: GoogleResponse = { items: [] };
+    try {
+      const res2 = await fetch(url2.toString());
+      if (res2.ok) {
+        data2 = await res2.json();
+      }
+    } catch { /* ignore second page errors */ }
 
     const allItems = [...(data1.items ?? []), ...(data2.items ?? [])];
 
