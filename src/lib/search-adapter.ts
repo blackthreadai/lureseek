@@ -1,10 +1,11 @@
 import { SearchProvider } from "./types";
 import { BraveSearchProvider } from "./brave-search";
+import { GoogleSearchProvider } from "./google-search";
 import { MOCK_LURES } from "./mock-data";
 import { LureResult } from "./types";
 
 /**
- * Mock search provider — fallback when no API key is configured.
+ * Mock search provider — fallback when no API keys are configured.
  */
 class MockSearchProvider implements SearchProvider {
   async search(query: string): Promise<LureResult[]> {
@@ -18,7 +19,15 @@ class MockSearchProvider implements SearchProvider {
   }
 }
 
-/** The active search provider — uses Brave if API key exists, otherwise mock */
-export const searchProvider: SearchProvider = process.env.BRAVE_API_KEY
-  ? new BraveSearchProvider()
-  : new MockSearchProvider();
+/** Pick the best available provider */
+function pickProvider(): SearchProvider {
+  if (process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX) {
+    return new GoogleSearchProvider();
+  }
+  if (process.env.BRAVE_API_KEY) {
+    return new BraveSearchProvider();
+  }
+  return new MockSearchProvider();
+}
+
+export const searchProvider: SearchProvider = pickProvider();
