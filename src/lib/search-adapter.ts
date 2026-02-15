@@ -1,7 +1,7 @@
 import { SearchProvider } from "./types";
 import { BraveSearchProvider } from "./brave-search";
 import { GoogleSearchProvider } from "./google-search";
-import { DuckDuckGoSearchProvider } from "./serper-search";
+import { BingSearchProvider } from "./bing-search";
 import { MOCK_LURES } from "./mock-data";
 import { LureResult } from "./types";
 
@@ -17,7 +17,7 @@ class MockSearchProvider implements SearchProvider {
   }
 }
 
-/** Pick the best available provider — DDG as default (no keys needed) */
+/** Pick the best available provider — Bing as default (no keys needed) */
 function pickProvider(): [SearchProvider, string] {
   if (process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX) {
     return [new GoogleSearchProvider(), "google"];
@@ -25,8 +25,7 @@ function pickProvider(): [SearchProvider, string] {
   if (process.env.BRAVE_API_KEY) {
     return [new BraveSearchProvider(), "brave"];
   }
-  // DuckDuckGo — no API key needed
-  return [new DuckDuckGoSearchProvider(), "duckduckgo"];
+  return [new BingSearchProvider(), "bing"];
 }
 
 const [provider, name] = pickProvider();
