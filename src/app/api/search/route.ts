@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchProvider } from "@/lib/search-adapter";
+import { searchProvider, providerName } from "@/lib/search-adapter";
 import { SearchResponse } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
@@ -7,15 +7,17 @@ export async function GET(request: NextRequest) {
 
   try {
     const results = await searchProvider.search(query);
-    const response: SearchResponse = {
+    const response: SearchResponse & { provider?: string } = {
       results,
       query,
       total: results.length,
+      provider: providerName,
     };
     return NextResponse.json(response);
-  } catch {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json(
-      { error: "Search failed" },
+      { error: "Search failed", detail: message, provider: providerName },
       { status: 500 },
     );
   }

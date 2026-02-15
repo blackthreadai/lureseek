@@ -31,3 +31,8 @@ function pickProvider(): SearchProvider {
 }
 
 export const searchProvider: SearchProvider = pickProvider();
+export const providerName: string = process.env.GOOGLE_API_KEY && process.env.GOOGLE_CX
+  ? "google"
+  : process.env.BRAVE_API_KEY
+    ? "brave"
+    : "mock";
