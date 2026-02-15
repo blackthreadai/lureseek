@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
-  background-color: #0a0f1a;
+  background-color: #011432;
   color: #e2e8f0;
 }
 
@@ -18,9 +18,9 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    #1e293b 25%,
-    #334155 50%,
-    #1e293b 75%
+    #021a3d 25%,
+    #0a2a5c 50%,
+    #021a3d 75%
   );
   background-size: 800px 100%;
   animation: shimmer 1.5s infinite linear;

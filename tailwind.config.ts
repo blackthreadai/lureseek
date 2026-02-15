@@ -10,12 +10,12 @@ const config: Config = {
     extend: {
       colors: {
         lure: {
-          bg: "#0a0f1a",
-          surface: "#111827",
-          border: "#1e293b",
-          accent: "#22d3ee",
-          "accent-dim": "#0e7490",
-          muted: "#64748b",
+          bg: "#011432",
+          surface: "#021a3d",
+          border: "#0a2a5c",
+          accent: "#db2439",
+          "accent-dim": "#a81c2e",
+          muted: "#4a6fa5",
           text: "#e2e8f0",
         },
       },
